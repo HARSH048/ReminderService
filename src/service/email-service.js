@@ -42,8 +42,22 @@ const updateTicket = async (id, data) => {
   }
 };
 
-const testfun = async (data) => {
-  console.log("in the service layer", data);
+const subscribeEvents = async (payload) => {
+  let service = payload.service;
+  let data = payload.data;
+  switch (service) {
+    case "CREATE_TICKET":
+      await createNotification(data);
+      break;
+
+    case "SEND_BASIC_EMAIL":
+      await sendBasicEmail(data);
+      break;
+
+    default:
+      console.log("NO VALID EVENT");
+      break;
+  }
 };
 
 module.exports = {
@@ -51,5 +65,5 @@ module.exports = {
   fetchPendingEmails,
   createNotification,
   updateTicket,
-  testfun,
+  subscribeEvents,
 };
