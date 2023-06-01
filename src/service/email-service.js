@@ -42,9 +42,14 @@ const updateTicket = async (id, data) => {
   }
 };
 
+const testfun = async (data) => {
+  console.log("in the service layer", data);
+};
+
 module.exports = {
   sendBasicEmail,
   fetchPendingEmails,
   createNotification,
   updateTicket,
+  testfun,
 };
